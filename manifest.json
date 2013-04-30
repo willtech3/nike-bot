@@ -12,7 +12,7 @@
     "permissions": [
         "tabs",
         "alarms",
-        "https://twitter.com/ryannmehta",
+        "https://twitter.com/nikestore",
         "http://store.nike.com/*",
         "https://secure-niketown.nike.com/*"
     ]

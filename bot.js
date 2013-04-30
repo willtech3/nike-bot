@@ -3,7 +3,7 @@ function nikeBot(userSpecifics) {
         when: Date.now() + 2000, 
         periodInMinutes: 0.02
     });
-    chrome.tabs.create({url: 'https://twitter.com/ryannmehta'}, function(twitterTab) {
+    chrome.tabs.create({url: 'https://twitter.com/nikestore'}, function(twitterTab) {
         var shoes = userSpecifics.shoes;
         chrome.alarms.onAlarm.addListener(function (refresh) {
             twitBot(shoes, twitterTab);
