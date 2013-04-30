@@ -3,7 +3,7 @@ function nikeBot(userSpecifics) {
         when: Date.now() + 2000, 
         periodInMinutes: 0.02
     });
-    chrome.tabs.create({url: 'https://twitter.com/nikestore'}, function(twitterTab) {
+    chrome.tabs.create({url: 'https://twitter.com/ryannmehta'}, function(twitterTab) {
         var shoes = userSpecifics.shoes;
         chrome.alarms.onAlarm.addListener(function (refresh) {
             twitBot(shoes, twitterTab);
@@ -30,7 +30,7 @@ function nikeBot(userSpecifics) {
     }
     function shoeBot(cartInfo, tab) {
         function injector(file, message) {
-            chrome.tabs.executeScript(tab.id, {file: file}, function(r) {
+            chrome.tabs.executeScript(tab.id, {file: file, runAt: 'document_end'}, function(r) {
                 chrome.tabs.sendMessage(tab.id, message, function(result) {
                 });
             });
@@ -39,10 +39,13 @@ function nikeBot(userSpecifics) {
             switch (changeInfo.url.split('?')[0]) {
                 case 'http://store.nike.com/us/en_us/':
                     injector('addToCart.js', cartInfo.sizeInfo);
+                    break;
                 case 'https://secure-niketown.nike.com/checkout/html/checkout_login.jsp':
                     injector('login.js', cartInfo.loginInfo);
+                    break;
                 case 'https://secure-niketown.nike.com/checkout/html/shipping.jsp':
                     injector('shipping.js', cartInfo.shippingInfo);
+                    break;
                 /*case 'https://secure-niketown.nike.com/checkout/html/billing.jsp':
                     injector('billing.js', cartInfo.billingInfo);
                 */
